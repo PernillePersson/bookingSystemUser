@@ -444,12 +444,18 @@ public class UserController {
 
             // Sætter farven alt efter booking type
             if (Objects.equals(book.getBookingCode(), bKode)){
-                r.setFill(Color.DODGERBLUE);
                 r.onMouseClickedProperty().set(mouseEvent -> {
                 System.out.println("Clicked on: " + book.getFirstName());
+                    try {
+                        ændreBooking(book);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
                 if (book.getBookingType() == 't'){
                     r.setFill(Color.RED);
+                } else {
+                    r.setFill(Color.DODGERBLUE);
                 }
             } else {r.setFill(Color.BLACK);}
 

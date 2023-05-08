@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.DayOfWeek;
 import java.util.Optional;
 
 public class FormularController {
@@ -30,13 +31,15 @@ public class FormularController {
     private RadioButton yesToggle, noToggle;
 
     @FXML
-    private Label mailLabel, navnLabel, organisationLabel, tlfLabel, godkendLabel;
+    private Label mailLabel, navnLabel, organisationLabel, tlfLabel;
 
     @FXML
     private ComboBox slutTid, startTid;
 
     @FXML
-    private Button godkendKnap, opdaterBookingKnap;
+    private Button opdaterBookingKnap;
+
+    private char type;
 
     private Booking booking;
 
@@ -70,10 +73,6 @@ public class FormularController {
         startTid.setValue(String.valueOf(b.getStartTid()).substring(0,5));
         slutTid.setValue(String.valueOf(b.getSlutTid()).substring(0,5));
 
-        if (b.getBookingType() == 'p'){
-            godkendLabel.setVisible(false);
-            godkendKnap.setVisible(false);
-        }
 
     }
     @FXML
@@ -101,6 +100,13 @@ public class FormularController {
             if (slutTid.getSelectionModel().getSelectedIndex() <= startTid.getSelectionModel().getSelectedIndex()){
                 slutTid.setValue(slutTid.getItems().get(startTid.getSelectionModel().getSelectedIndex() +1));
             }
+            if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
+                    bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
+                    bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+                type = 't';
+            }else {
+                type = 'p';
+            }
             booking.setSlutTid(Time.valueOf(slutTid.getValue() + ":00"));
         });
     }
@@ -108,19 +114,25 @@ public class FormularController {
     @FXML
     void ændreDato(ActionEvent event) {
         booking.setBookingDate(bookingDato.getValue());
+            if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
+                    bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
+                    bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+                type = 't';
+
+            }else {
+                type = 'p';
+            }
+
     }
 
-    @FXML
-    void godkendBooking(ActionEvent event) {
-        booking.setBookingType('p');
-    }
 
     @FXML
     void opdaterBooking(ActionEvent event) throws SQLException {
+        System.out.println(booking.getBookingType());
+        System.out.println(type);
         bdi.updateBooking(booking.getId(), booking.getBookingType(), booking.getCatering(),
                 booking.getBookingDate(), booking.getStartTid(), booking.getSlutTid());
 
-        //ændringsMail(booking.getEmail());
 
         Node source = (Node)  event.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();

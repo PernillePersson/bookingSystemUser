@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -53,6 +55,10 @@ public class OpretFormularController {
     private String bKode;
 
     private Boolean midlertidig;
+
+    final Clipboard clipboard = Clipboard.getSystemClipboard();
+    final ClipboardContent content = new ClipboardContent();
+
 
     public OpretFormularController() throws SQLException {
     }
@@ -146,7 +152,7 @@ public class OpretFormularController {
 
     @FXML
     void opretBooking(ActionEvent event) {
-        int nr = 12345678;
+        int nr = Integer.parseInt(tlf.getText());
         bKode = BookingCode.generateBookingCode();
         String organisation = org.getText();
         if (org.getText().isEmpty()){
@@ -176,7 +182,8 @@ public class OpretFormularController {
 
         if (knap.get() == ButtonType.OK)
             try {
-
+                content.putString(bKode);
+                clipboard.setContent(content);
             } catch (Exception e) {
 
             }
