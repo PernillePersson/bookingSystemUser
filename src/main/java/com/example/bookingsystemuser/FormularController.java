@@ -103,9 +103,9 @@ public class FormularController {
             if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
                     bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
                     bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
-                type = 't';
+                booking.setBookingType('t');
             }else {
-                type = 'p';
+                booking.setBookingType('p');
             }
             booking.setSlutTid(Time.valueOf(slutTid.getValue() + ":00"));
         });
@@ -117,10 +117,10 @@ public class FormularController {
             if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
                     bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
                     bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
-                type = 't';
+                booking.setBookingType('t');
 
             }else {
-                type = 'p';
+                booking.setBookingType('p');
             }
 
     }
@@ -128,8 +128,6 @@ public class FormularController {
 
     @FXML
     void opdaterBooking(ActionEvent event) throws SQLException {
-        System.out.println(booking.getBookingType());
-        System.out.println(type);
         bdi.updateBooking(booking.getId(), booking.getBookingType(), booking.getCatering(),
                 booking.getBookingDate(), booking.getStartTid(), booking.getSlutTid());
 
