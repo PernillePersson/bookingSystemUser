@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Clipboard update">
+    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Bugs fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/FormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/FormularController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/weekView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/weekView.fxml" afterDir="false" />
+    </list>
+    <list id="ae90fa7a-02a1-4181-8b2a-df6eaeb5954b" name="Changes by Rizzly Bear" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/FormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/FormularController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/SimpleThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/SimpleThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +35,34 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="ae90fa7a-02a1-4181-8b2a-df6eaeb5954b" />
+        <range start1="23" end1="23" start2="24" end2="25" changelist="ae90fa7a-02a1-4181-8b2a-df6eaeb5954b" />
+        <range start1="46" end1="47" start2="48" end2="49" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="50" end1="50" start2="52" end2="55" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="72" end1="72" start2="77" end2="84" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="73" end1="73" start2="85" end2="86" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="89" end1="89" start2="102" end2="113" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="154" end1="154" start2="178" end2="179" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="158" end1="161" start2="183" end2="216" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="162" end1="163" start2="217" end2="218" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="164" end1="166" start2="219" end2="221" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="167" end1="171" start2="222" end2="226" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="172" end1="175" start2="227" end2="230" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="176" end1="177" start2="231" end2="232" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="178" end1="179" start2="233" end2="234" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+        <range start1="180" end1="187" start2="235" end2="242" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/FormularController.java">
+      <ranges>
+        <range start1="50" end1="50" start2="50" end2="55" changelist="ae90fa7a-02a1-4181-8b2a-df6eaeb5954b" />
+        <range start1="74" end1="75" start2="79" end2="79" changelist="101b11e6-07e0-428b-b08f-3cdacb36d7ba" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -83,7 +122,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1683198458545</updated>
-      <workItem from="1683198461044" duration="15856000" />
+      <workItem from="1683198461044" duration="26251000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -106,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683544153166</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Bugs fixed">
+      <created>1683550070336</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683550070336</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +172,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Clipboard update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clipboard update" />
+    <MESSAGE value="Bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugs fixed" />
   </component>
 </project>

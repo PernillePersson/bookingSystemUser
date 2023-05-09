@@ -44,10 +44,13 @@ public class OpretFormularController {
     private Button opretBookingKnap;
 
     @FXML
-    private ComboBox slutTid, startTid;
+    private ComboBox formål, forløb, slutTid, startTid;
 
     @FXML
     private Text bemærkning;
+
+    @FXML
+    private Spinner antalDeltagere;
 
     private char type;
     private char forp;
@@ -70,7 +73,15 @@ public class OpretFormularController {
                 "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00");
         startTid.setValue("07:00");
         slutTid.setValue("12:00");
+
+        formål.getItems().addAll("Lokaleleje", "Åbent skoleforløb", "Andet");
+
+        forløb.getItems().addAll("Idéfabrikken", "Digital fabrikation med laserskærer", "Robot på job",
+                "Robotten rydder op", "Naturturisme ved Vadehavet", "Skab sikkerhedi i Vadehavet");
+        forløb.setPromptText("Vælg forløb");
+
         forplejningLink.setVisible(false);
+        //forplejningLink.setV
         bookingDato.setValue(LocalDate.now());
         forp = 'n';
         type = 'p';
@@ -86,6 +97,17 @@ public class OpretFormularController {
             forplejningLink.setVisible(false);
             forp = 'n';
         }
+    }
+
+    @FXML
+    void formålValgt(ActionEvent event) {
+        formål.setOnAction((e) -> {
+            if (formål.getSelectionModel().getSelectedIndex() == 1){
+                forløb.setVisible(true);
+            } else {
+                forløb.setVisible(false);
+            }
+        });
     }
 
     @FXML
@@ -152,39 +174,70 @@ public class OpretFormularController {
     void opretBooking(ActionEvent event) {
         int nr = Integer.parseInt(tlf.getText());
         bKode = BookingCode.generateBookingCode();
+
         String organisation = org.getText();
         if (org.getText().isEmpty()){
             organisation = "Ingen";
         }
-        bdi.addBooking(fNavn.getText(), eNavn.getText(), organisation, email.getText(), nr,
-                type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
-                Time.valueOf(slutTid.getValue() + ":00"));
 
-        Dialog<ButtonType> dialog = new Dialog();
 
-        dialog.setTitle("Din bookingkode");
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+        List<Booking> allBookings = bdi.getAllBooking();
+        boolean overlaps = false;
 
-        Label l1 = new Label("Din bookingkode:");
-        Label kodeLabel = new Label(bKode);
-        kodeLabel.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
-        Label infoLabel = new Label("Gem denne kode til senere brug");
+        for(Booking b : allBookings){
 
-        VBox vb = new VBox(l1, kodeLabel, infoLabel);
-        vb.setSpacing(10);
-        vb.setPadding(new Insets(10,30,10,30));
+            String value = String.valueOf(b.getStartTid());
+            String strt = value.substring(0,2);
+            int start = Integer.valueOf(strt);
 
-        dialog.getDialogPane().setContent(vb);
+            String value2 = String.valueOf(b.getSlutTid());
+            String slt = value2.substring(0,2);
+            int slut = Integer.valueOf(slt);
 
-        Optional<ButtonType> knap = dialog.showAndWait();
+            String value3 = String.valueOf(startTid.getValue());
+            String comboStart = value3.substring(0,2);
+            int comboStrt = Integer.valueOf(comboStart);
 
-        if (knap.get() == ButtonType.OK)
-            try {
-                content.putString(bKode);
-                clipboard.setContent(content);
-            } catch (Exception e) {
+            String value4 = String.valueOf(slutTid.getValue());
+            String comboSlut = value4.substring(0,2);
+            int comboSlt = Integer.valueOf(comboSlut);
 
+            if(bookingDato.getValue().equals(b.getBookingDate()) && comboSlt >= start && comboStrt <= slut){
+                overlaps = true;
+                break;
             }
+        }
+
+        if(!overlaps){
+            bdi.addBooking(fNavn.getText(), eNavn.getText(), organisation, email.getText(), nr,
+                    type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
+                    Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
+
+            Dialog<ButtonType> dialog = new Dialog();
+
+            dialog.setTitle("Din bookingkode");
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+
+            Label l1 = new Label("Din bookingkode:");
+            Label kodeLabel = new Label(bKode);
+            kodeLabel.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
+            Label infoLabel = new Label("Gem denne kode til senere brug");
+
+            VBox vb = new VBox(l1, kodeLabel, infoLabel);
+            vb.setSpacing(10);
+            vb.setPadding(new Insets(10,30,10,30));
+
+            dialog.getDialogPane().setContent(vb);
+
+            Optional<ButtonType> knap = dialog.showAndWait();
+
+            if (knap.get() == ButtonType.OK)
+                try {
+                    content.putString(bKode);
+                    clipboard.setContent(content);
+                } catch (Exception e) {
+                }
+        }
     }
 
     @FXML

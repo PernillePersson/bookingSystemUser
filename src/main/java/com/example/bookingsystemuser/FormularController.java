@@ -73,7 +73,6 @@ public class FormularController {
         startTid.setValue(String.valueOf(b.getStartTid()).substring(0,5));
         slutTid.setValue(String.valueOf(b.getSlutTid()).substring(0,5));
 
-
     }
     @FXML
     void forplejningToggle(ActionEvent event) {
