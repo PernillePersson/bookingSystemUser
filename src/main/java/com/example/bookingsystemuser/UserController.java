@@ -26,7 +26,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.lang.Math;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.DayOfWeek;
@@ -56,7 +55,6 @@ public class UserController {
 
     private final SimpleThread simpleThread;
 
-
     private double y_start,y_end;
     ArrayList<Rectangle> manRectangles = new ArrayList<>();
     ArrayList<Rectangle> tirsRectangles = new ArrayList<>();
@@ -80,7 +78,6 @@ public class UserController {
         today = LocalDate.now();
         opsætDato();
         insertSystemBookings();
-
         simpleThread.start();
 
         // sendNotificationEmails(); // Aktiver den her når vi får sat en værdi på db der tjekker om der er blevet
@@ -110,7 +107,6 @@ public class UserController {
                 insertSystemBookings();
             }
         });
-
         oversigtStage.show();
     }
 
@@ -120,8 +116,6 @@ public class UserController {
         Booking b = bdi.getMyBooking(bKode);
         ændreBooking(b);
     }
-
-
 
     public void ændreBooking(Booking b) throws IOException {
         try {
@@ -145,18 +139,15 @@ public class UserController {
         } catch (NullPointerException n){
             System.err.println("Ingen booking fundet med denne bookingkode ");
         }
-
     }
 
     public void sendMail(Booking b){
         //Åben tekstfelt der skal sendes som mail
         System.out.println("Sender mail til " + b.getFirstName());
-
         String to = b.getEmail();
         String from = "noreplybookingsystemem@gmail.com";
         String subject; // getText fra eventuel subject textfield eller lign
         String text; // getText fra textField eller lign.
-
     }
 
     @FXML
@@ -220,7 +211,6 @@ public class UserController {
             monthLabel.setText("Dec");
         }
     } //Sætter mdr labels til at være dansk
-
 
     @FXML
     void mondayPress(MouseEvent event) {
@@ -335,17 +325,9 @@ public class UserController {
     }
 
     public void addStack(Pane p, ArrayList<Rectangle> rect){
-
         Label l = new Label();
-        ArrayList<String> aList = new ArrayList<>();
-        aList.add("Magnus");
-        aList.add("Marc");
-        aList.add("Pernille");
-
-        int rand = (int) (Math.random() * aList.size());
 
         // Array med de værdier som vi skal bruge mht. at indsætte rektangel på det korrekte sted
-
         double[] yValues = {0, 44, 89, 134, 179, 224, 269, 314, 359, 404, 449, 494, 539, 584, 629, 674, 719, 764};
 
         // Find start og slut indekset for den nye rektangel
@@ -364,11 +346,10 @@ public class UserController {
             }
         }
 
-
         // Hvis startIndexet ikke er -1 og endIndex ikke er -1, så laver vi en ny rektangel
         if (startIndex != -1 && endIndex != -1) {
             Rectangle r = new Rectangle();
-            Booking book = new Booking((int) Math.random(),aList.get(rand),"Hansen","EASV","madmedmig@gmail.com",1234,'t','y', LocalDate.of(2023,04,03),LocalDate.of(2023,03,30),"131231",Time.valueOf("10:00:00"),Time.valueOf("15:00:00"));
+            Booking book = new Booking(3,"Mognus","Hansen","EASV","madmedmig@gmail.com",1234,'t','y', LocalDate.of(2023,04,03),LocalDate.of(2023,03,30),"131231",Time.valueOf("10:00:00"),Time.valueOf("15:00:00"), 10);
 
             r.setY(yValues[startIndex] + 1);
             r.setX(0);

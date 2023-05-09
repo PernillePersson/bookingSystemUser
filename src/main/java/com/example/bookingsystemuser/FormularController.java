@@ -48,6 +48,11 @@ public class FormularController {
 
 
     public void passBooking(Booking b){
+
+
+
+
+
         booking = b;
         setDetails(booking);
     }
