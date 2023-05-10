@@ -93,6 +93,42 @@ public class OpretFormularController {
 
     }
 
+    public void initialize() {
+        eNavn.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\sa-zA-Z*")) {
+                eNavn.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            }
+        });
+
+        fNavn.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\sa-zA-Z*")) {
+                fNavn.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            }
+        });
+
+        email.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\sa-zA-Z-\\d-@-.*")) {
+                email.setText(newValue.replaceAll("[^\\sa-zA-Z-\\d-.-@]", ""));
+            }
+        });
+
+        org.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\sa-zA-Z")) {
+                org.setText(newValue.replaceAll("[\\sa-zA-Z]", ""));
+            }
+        });
+
+        tlf.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*")) {
+                    tlf.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            if (tlf.getLength() > 8) {
+                String MAX = tlf.getText().substring(0,8);
+                tlf.setText(MAX);
+            }
+        });
+    }
+
     @FXML
     void forplejningToggle(ActionEvent event) {
         if (forplejning.getSelectedToggle() == yesToggle){
