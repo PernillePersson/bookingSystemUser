@@ -111,8 +111,8 @@ public class OpretFormularController {
         });
 
         org.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z")) {
-                org.setText(newValue.replaceAll("[\\sa-zA-Z]", ""));
+            if (!newValue.matches("\\sa-zA-Z*")) {
+                org.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
             }
         });
 
