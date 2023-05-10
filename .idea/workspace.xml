@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Create on drag">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Forløb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e6dc4219-db95-47ef-9c29-ec5abafb63d3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e6dc4219-db95-47ef-9c29-ec5abafb63d3.xml" afterDir="false" />
+    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Bugs fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" afterDir="false" />
     </list>
     <list id="67884d56-c5d6-471b-9ed9-ed56eadf1d3f" name="Changes by Marc" comment="Textfield limitation" />
     <list id="4ff9db28-83b0-4fe6-b34f-29091493642e" name="Changes by Rex" comment="Create on drag" />
@@ -94,6 +88,7 @@
       <workItem from="1683716209264" duration="194000" />
       <workItem from="1683722321533" duration="295000" />
       <workItem from="1683729085285" duration="2339000" />
+      <workItem from="1683733683781" duration="467000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -158,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683713317735</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Bugs fixed">
+      <created>1683733892579</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1683733892579</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,11 +180,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Clipboard update" />
-    <MESSAGE value="Bugs fixed" />
     <MESSAGE value="Overlap fixed" />
     <MESSAGE value="Changes by Magnus" />
     <MESSAGE value="Create on drag" />
     <MESSAGE value="Textfield limitation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Textfield limitation" />
+    <MESSAGE value="Bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugs fixed" />
   </component>
 </project>
