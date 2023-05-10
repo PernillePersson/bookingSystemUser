@@ -241,17 +241,71 @@ public class BookingDAOImpl implements BookingDAO {
     }
 
     @Override
-    public void addForløb(){
+    public void addForløb(String bk, int f) {
         try {
+            int id = 0;
+            PreparedStatement ps1 = con.prepareStatement("SELECT bookingID FROM Booking WHERE bookingCode = ?");
+            ps1.setString(1, bk);
+            ResultSet rs = ps1.executeQuery();
+
+            while (rs.next()){
+                id = rs.getInt(1);
+            }
+
+
             PreparedStatement ps = con.prepareStatement("INSERT INTO BookingForløb VALUES(?,?)");
-            //ps.setInt(1, b.getId());
-            //ps.setInt
+            ps.setInt(1, id);
+            ps.setInt(2, f);
             ps.executeUpdate();
-
-
         } catch (SQLException e) {
-            System.err.println("Kunne ikke slette booking" + e.getMessage());
+            System.err.println("Kunne ikke tilføje forløb til booking " + e.getMessage());
         }
+    }
+
+    @Override
+    public List<Forløb> getAllForløb() {
+        List<Forløb> allForløb = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Forløb;");
+            ResultSet rs = ps.executeQuery();
+
+            Forløb f;
+            while (rs.next()){
+                int id = rs.getInt(1);
+                String forløb = rs.getString(2);
+
+
+                f = new Forløb(id, forløb);
+                allForløb.add(f);
+
+            }
+        } catch (SQLException e){
+            System.err.println("Kan ikke finde forløb " + e.getMessage());
+        }
+        return allForløb;
+    }
+
+    @Override
+    public Forløb getForløb(int id) {
+        Forløb f = null;
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT forløb.forløbID, forløb FROM Forløb \n" +
+                    "JOIN BookingForløb ON BookingForløb.forløbID = Forløb.forløbID\n" +
+                    "WHERE bookingID = ?;");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                int i = rs.getInt(1);
+                String s = rs.getString(2);
+
+                f = new Forløb(i, s);
+            }
+
+        }catch(SQLException e){
+            System.out.println("Kunne ikke finde forløb " + e.getMessage());
+        }
+        return f;
     }
 
 }

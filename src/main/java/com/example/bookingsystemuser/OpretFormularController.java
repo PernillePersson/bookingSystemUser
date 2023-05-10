@@ -1,10 +1,7 @@
 package com.example.bookingsystemuser;
 
 import com.example.bookingsystemuser.Gmail.GEmail;
-import com.example.bookingsystemuser.model.Booking;
-import com.example.bookingsystemuser.model.BookingCode;
-import com.example.bookingsystemuser.model.BookingDAO;
-import com.example.bookingsystemuser.model.BookingDAOImpl;
+import com.example.bookingsystemuser.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -78,10 +75,13 @@ public class OpretFormularController {
         slutTid.setValue(String.valueOf(et).substring(0,5));
 
         formål.getItems().addAll("Lokaleleje", "Åbent skoleforløb", "Andet");
+        formål.setValue("Lokaleleje");
 
-        forløb.getItems().addAll("Idéfabrikken", "Digital fabrikation med laserskærer", "Robot på job",
-                "Robotten rydder op", "Naturturisme ved Vadehavet", "Skab sikkerhed i Vadehavet");
-        forløb.setPromptText("Vælg forløb");
+        List<Forløb> forl = bdi.getAllForløb();
+        for (Forløb f : forl){
+            forløb.getItems().add(f);
+        }
+        forløb.setValue("Ingen");
 
         forplejningLink.setVisible(false);
         //forplejningLink.setV
@@ -140,13 +140,11 @@ public class OpretFormularController {
 
     @FXML
     void formålValgt(ActionEvent event) {
-        formål.setOnAction((e) -> {
-            if (formål.getSelectionModel().getSelectedIndex() == 1){
-                forløb.setVisible(true);
-            } else {
-                forløb.setVisible(false);
-            }
-        });
+        if (formål.getSelectionModel().getSelectedIndex() == 1){
+            forløb.setVisible(true);
+        } else {
+            forløb.setVisible(false);
+        }
     }
 
     @FXML
@@ -168,34 +166,30 @@ public class OpretFormularController {
     }
 
     @FXML
-    void opdaterSlutTid(MouseEvent event) {
-        slutTid.setOnAction((e) -> {
-            if (slutTid.getSelectionModel().getSelectedIndex() <= startTid.getSelectionModel().getSelectedIndex()){
-                slutTid.setValue(slutTid.getItems().get(startTid.getSelectionModel().getSelectedIndex() +1));
-            }
-            if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
-                    bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
-                    bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
-                opretBookingKnap.setText("Anmod om booking");
-                bemærkning.setVisible(true);
-                type = 't';
-                midlertidig = true;
-            }else {
-                opretBookingKnap.setText("Opret booking");
-                bemærkning.setVisible(false);
-                type = 'p';
-                midlertidig = false;
-            }
-        });
+    void opdaterSlutTid(ActionEvent event) {
+        if (slutTid.getSelectionModel().getSelectedIndex() <= startTid.getSelectionModel().getSelectedIndex()){
+            slutTid.setValue(slutTid.getItems().get(startTid.getSelectionModel().getSelectedIndex() +1));
+        }
+        if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+            opretBookingKnap.setText("Anmod om booking");
+            bemærkning.setVisible(true);
+            type = 't';
+            midlertidig = true;
+        }else {
+            opretBookingKnap.setText("Opret booking");
+            bemærkning.setVisible(false);
+            type = 'p';
+            midlertidig = false;
+        }
     }
 
     @FXML
-    void opdaterStartTid(MouseEvent event) {
-        startTid.setOnAction((e) -> {
-            if (startTid.getSelectionModel().getSelectedIndex() >= slutTid.getSelectionModel().getSelectedIndex()){
-                startTid.setValue(startTid.getItems().get(slutTid.getSelectionModel().getSelectedIndex() -1));
-            }
-        });
+    void opdaterStartTid(ActionEvent event) {
+        if (startTid.getSelectionModel().getSelectedIndex() >= slutTid.getSelectionModel().getSelectedIndex()){
+            startTid.setValue(startTid.getItems().get(slutTid.getSelectionModel().getSelectedIndex() -1));
+        }
     }
 
     @FXML
@@ -219,7 +213,7 @@ public class OpretFormularController {
             organisation = "Ingen";
         }
 
-        GEmail gmailSender = new GEmail();
+        //GEmail gmailSender = new GEmail();
 
 
         List<Booking> allBookings = bdi.getAllBooking();
@@ -250,9 +244,12 @@ public class OpretFormularController {
         }
 
         if(!overlaps){
+            Forløb f = (Forløb) forløb.getSelectionModel().getSelectedItem();
             bdi.addBooking(fNavn.getText(), eNavn.getText(), organisation, email.getText(), nr,
                     type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
                     Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
+
+            bdi.addForløb(bKode, f.getId());
 
             Dialog<ButtonType> dialog = new Dialog();
 
@@ -264,7 +261,7 @@ public class OpretFormularController {
             kodeLabel.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
             Label infoLabel = new Label("Gem denne kode til senere brug");
 
-            gmailSender.sendBookingCode(email.getText(), fNavn.getText(),bKode);
+            //gmailSender.sendBookingCode(email.getText(), fNavn.getText(),bKode);
 
             VBox vb = new VBox(l1, kodeLabel, infoLabel);
             vb.setSpacing(10);
