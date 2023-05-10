@@ -1,5 +1,6 @@
 package com.example.bookingsystemuser;
 
+import com.example.bookingsystemuser.Gmail.GEmail;
 import com.example.bookingsystemuser.model.Booking;
 import com.example.bookingsystemuser.model.BookingCode;
 import com.example.bookingsystemuser.model.BookingDAO;
@@ -60,6 +61,8 @@ public class OpretFormularController {
     private String bKode;
 
     private Boolean midlertidig;
+
+    private GEmail gmailSender;
 
     final Clipboard clipboard = Clipboard.getSystemClipboard();
     final ClipboardContent content = new ClipboardContent();
@@ -224,6 +227,8 @@ public class OpretFormularController {
             Label kodeLabel = new Label(bKode);
             kodeLabel.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
             Label infoLabel = new Label("Gem denne kode til senere brug");
+
+            gmailSender.sendBookingCode(email.getText(), fNavn.getText(),bKode);
 
             VBox vb = new VBox(l1, kodeLabel, infoLabel);
             vb.setSpacing(10);

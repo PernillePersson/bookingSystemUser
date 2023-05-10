@@ -13,10 +13,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.util.List;
 
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.DayOfWeek;
+
 import java.util.Optional;
 
 public class FormularController {
@@ -42,6 +44,8 @@ public class FormularController {
     private char type;
 
     private Booking booking;
+
+    private GEmail gmailSender;
 
     public FormularController() throws SQLException {
     }
@@ -122,36 +126,52 @@ public class FormularController {
                     bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
                     bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
                 booking.setBookingType('t');
-
             }else {
                 booking.setBookingType('p');
             }
-
     }
-
 
     @FXML
     void opdaterBooking(ActionEvent event) throws SQLException {
-        bdi.updateBooking(booking.getId(), booking.getBookingType(), booking.getCatering(),
-                booking.getBookingDate(), booking.getStartTid(), booking.getSlutTid());
+        List<Booking> allBookings = bdi.getAllBooking();
+        boolean overlaps = false;
 
+        for(Booking b : allBookings){
 
-        Node source = (Node)  event.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
+            String value = String.valueOf(b.getStartTid());
+            String strt = value.substring(0,2);
+            int start = Integer.valueOf(strt);
 
+            String value2 = String.valueOf(b.getSlutTid());
+            String slt = value2.substring(0,2);
+            int slut = Integer.valueOf(slt);
+
+            String value3 = String.valueOf(startTid.getValue());
+            String comboStart = value3.substring(0,2);
+            int comboStrt = Integer.valueOf(comboStart);
+
+            String value4 = String.valueOf(slutTid.getValue());
+            String comboSlut = value4.substring(0,2);
+            int comboSlt = Integer.valueOf(comboSlut);
+
+            if(bookingDato.getValue().equals(b.getBookingDate()) && comboSlt >= start && comboStrt <= slut){
+                overlaps = true;
+                break;
+            }
+        }
+
+        if(!overlaps) {
+
+            bdi.updateBooking(booking.getId(), booking.getBookingType(), booking.getCatering(),
+                    booking.getBookingDate(), booking.getStartTid(), booking.getSlutTid());
+
+            gmailSender.ændringsMail(booking.getEmail());
+
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+        }
     }
-
-    public void ændringsMail(String t){
-
-        GEmail gmailSender = new GEmail();
-
-        String from = "noreplybookingsystemem@gmail.com";
-        String subject = "Ændring af booking";
-        String text = "Der er blevet foretaget en ændring i din booking. Gå venligst ind og tjek ændringerne";
-        gmailSender.sendEmail(t,from,subject,text);
-    }
-
 
     @FXML
     void sletBooking(ActionEvent event) throws SQLException {
@@ -172,8 +192,6 @@ public class FormularController {
                 System.err.println("Noget gik galt");
                 System.err.println(e.getMessage());
             }
-
     }
-
     BookingDAO bdi = new BookingDAOImpl();
 }
