@@ -71,23 +71,23 @@ public class OpretFormularController {
     public OpretFormularController() throws SQLException {
     }
 
-    public void opsæt(){
+    public void opsæt(LocalDate d, Time st, Time et){
         startTid.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
                 "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00");
         slutTid.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
                 "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00");
-        startTid.setValue("07:00");
-        slutTid.setValue("12:00");
+        startTid.setValue(String.valueOf(st).substring(0,5));
+        slutTid.setValue(String.valueOf(et).substring(0,5));
 
         formål.getItems().addAll("Lokaleleje", "Åbent skoleforløb", "Andet");
 
         forløb.getItems().addAll("Idéfabrikken", "Digital fabrikation med laserskærer", "Robot på job",
-                "Robotten rydder op", "Naturturisme ved Vadehavet", "Skab sikkerhedi i Vadehavet");
+                "Robotten rydder op", "Naturturisme ved Vadehavet", "Skab sikkerhed i Vadehavet");
         forløb.setPromptText("Vælg forløb");
 
         forplejningLink.setVisible(false);
         //forplejningLink.setV
-        bookingDato.setValue(LocalDate.now());
+        bookingDato.setValue(d);
         forp = 'n';
         type = 'p';
 

@@ -11,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,10 +28,7 @@ import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class UserController {
 
@@ -87,17 +81,17 @@ public class UserController {
     @FXML
     void opretBookingKnap(ActionEvent event) throws IOException {
         //Skift scene til bookingformular
-        opretBooking();
+        opretBooking(LocalDate.now(), Time.valueOf("07:00:00"), Time.valueOf("12:00:00"));
     }
 
-    public void opretBooking() throws IOException {
+    public void opretBooking(LocalDate d, Time st, Time et) throws IOException {
         //åben formular med alt booking info, og knap der opdaterer
         FXMLLoader fxmlLoader = new FXMLLoader(UserApplication.class.getResource("bookingFormular.fxml"));
         Scene oversigtScene = new Scene(fxmlLoader.load());
         OpretFormularController formController = fxmlLoader.getController();
         Stage oversigtStage = new Stage();
         oversigtStage.setScene(oversigtScene);
-        formController.opsæt();
+        formController.opsæt(d, st, et);
 
         // Hvis der klikkes udenfor vinduet, lukkes det
         oversigtStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
@@ -137,6 +131,27 @@ public class UserController {
             oversigtStage.show();
         } catch (NullPointerException n){
             System.err.println("Ingen booking fundet med denne bookingkode ");
+            Dialog<ButtonType> dialog = new Dialog();
+
+            dialog.setTitle("Ingen bookingkode");
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+
+            Label l1 = new Label("Kunne ikke finde bookingkode");
+            l1.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
+
+            VBox vb = new VBox(l1);
+            vb.setSpacing(10);
+            vb.setPadding(new Insets(10,30,10,30));
+
+            dialog.getDialogPane().setContent(vb);
+
+            Optional<ButtonType> knap = dialog.showAndWait();
+
+            if (knap.get() == ButtonType.OK)
+                try {
+
+                } catch (Exception ex) {
+                }
         }
     }
 
@@ -209,7 +224,7 @@ public class UserController {
     }
 
     @FXML
-    void mondayRelease(MouseEvent event) {
+    void mondayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(mandagPane, manRectangles);
@@ -225,7 +240,7 @@ public class UserController {
     }
 
     @FXML
-    void tuesdayRelease(MouseEvent event) {
+    void tuesdayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(tirsdagPane, tirsRectangles);
@@ -241,7 +256,7 @@ public class UserController {
     }
 
     @FXML
-    void wednesdayRelease(MouseEvent event) {
+    void wednesdayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(onsdagPane, onsRectangles);
@@ -257,7 +272,7 @@ public class UserController {
     }
 
     @FXML
-    void thursdayRelease(MouseEvent event) {
+    void thursdayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(torsdagPane, torsRectangles);
@@ -273,7 +288,7 @@ public class UserController {
     }
 
     @FXML
-    void fridayRelease(MouseEvent event) {
+    void fridayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(fredagPane, freRectangles);
@@ -289,7 +304,7 @@ public class UserController {
     }
 
     @FXML
-    void saturdayRelease(MouseEvent event) {
+    void saturdayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(lørdagPane, lørRectangles);
@@ -305,7 +320,7 @@ public class UserController {
     }
 
     @FXML
-    void sundayRelease(MouseEvent event) {
+    void sundayRelease(MouseEvent event) throws IOException {
         try {
             y_end = event.getY();
             addStack(søndagPane, sønRectangles);
@@ -379,18 +394,16 @@ public class UserController {
             for (Rectangle rec : rect) {
                 if (rec.getY() + rec.getHeight() >= r.getY() && rec.getY() <= r.getY() + r.getHeight()) {
                     intersects = true;
-                    break;
                 }
             }
             // Hvis den ikke overlapper allerede eksisterende rektangler, så bliver den tilføjet
             // til kalenderen
             if (!intersects) {
-                // indsæt en tilføjelse af booking her eller i vores MandagPane release event
-                rectangleBooking.put(r,book);
-                rect.add(r);
-                labels.add(l);
-                p.getChildren().add(r);
-                p.getChildren().add(l);
+                try {
+                    opretBooking(lde,locationMap.get(yValues[startIndex]),locationMap.get(yValues[endIndex]));
+                } catch (IOException e){
+                    System.err.println("Noget gik galt " + e.getMessage());
+                }
             }
         }
     } // Tilføjer en rektangel til der hvor brugeren har klikket vha. mouse drag events.

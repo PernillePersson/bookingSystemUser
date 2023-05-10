@@ -165,7 +165,6 @@ public class BookingDAOImpl implements BookingDAO {
         return b;
     }
 
-
     @Override
     public List<Booking> showBooking(LocalDate date) {
         List<Booking> showBookings = new ArrayList<>();
@@ -241,5 +240,18 @@ public class BookingDAOImpl implements BookingDAO {
         return emailList;
     }
 
+    @Override
+    public void addForløb(){
+        try {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO BookingForløb VALUES(?,?)");
+            //ps.setInt(1, b.getId());
+            //ps.setInt
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            System.err.println("Kunne ikke slette booking" + e.getMessage());
+        }
+    }
 
 }
