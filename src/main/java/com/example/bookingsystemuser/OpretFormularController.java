@@ -62,8 +62,6 @@ public class OpretFormularController {
 
     private Boolean midlertidig;
 
-    private GEmail gmailSender;
-
     final Clipboard clipboard = Clipboard.getSystemClipboard();
     final ClipboardContent content = new ClipboardContent();
 
@@ -220,6 +218,8 @@ public class OpretFormularController {
         if (org.getText().isEmpty()){
             organisation = "Ingen";
         }
+
+        GEmail gmailSender = new GEmail();
 
 
         List<Booking> allBookings = bdi.getAllBooking();
