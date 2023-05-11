@@ -45,7 +45,6 @@ public class FormularController {
 
     private Booking booking;
 
-    private GEmail gmailSender;
 
     public FormularController() throws SQLException {
     }
@@ -150,7 +149,7 @@ public class FormularController {
             String comboSlut = value4.substring(0,2);
             int comboSlt = Integer.valueOf(comboSlut);
 
-            if(bookingDato.getValue().equals(b.getBookingDate()) && comboSlt >= start && comboStrt <= slut){
+            if(bookingDato.getValue().equals(b.getBookingDate()) & b.getId() != b.getId() && comboSlt >= start && comboStrt <= slut){
                 overlaps = true;
                 break;
             }
@@ -161,7 +160,7 @@ public class FormularController {
             bdi.updateBooking(booking.getId(), booking.getBookingType(), booking.getCatering(),
                     booking.getBookingDate(), booking.getStartTid(), booking.getSlutTid());
 
-            gmailSender.ændringsMail(booking.getEmail());
+            //gmailSender.ændringsMail(booking.getEmail());
 
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
