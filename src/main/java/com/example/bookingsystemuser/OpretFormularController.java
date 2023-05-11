@@ -16,6 +16,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.DayOfWeek;
@@ -144,6 +146,15 @@ public class OpretFormularController {
             forløb.setVisible(true);
         } else {
             forløb.setVisible(false);
+        }
+    }
+
+    public void hentForplejning(ActionEvent event) {
+        try {
+            File pdf = new File(this.getClass().getResource("forplejning.pdf").toURI());
+            Desktop.getDesktop().open(pdf);
+        } catch (Exception e){
+            System.out.println("Kunne ikke hente pdf" + e.getMessage());
         }
     }
 
@@ -288,4 +299,6 @@ public class OpretFormularController {
     }
 
     BookingDAO bdi = new BookingDAOImpl();
+
+
 }
