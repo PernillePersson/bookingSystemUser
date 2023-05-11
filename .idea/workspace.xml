@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Bugs fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/weekView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/weekView.fxml" afterDir="false" />
     </list>
     <list id="67884d56-c5d6-471b-9ed9-ed56eadf1d3f" name="Changes by Marc" comment="Textfield limitation" />
     <list id="4ff9db28-83b0-4fe6-b34f-29091493642e" name="Changes by Rex" comment="Create on drag" />
@@ -89,7 +90,8 @@
       <workItem from="1683722321533" duration="295000" />
       <workItem from="1683729085285" duration="2339000" />
       <workItem from="1683733683781" duration="806000" />
-      <workItem from="1683734989275" duration="447000" />
+      <workItem from="1683734989275" duration="950000" />
+      <workItem from="1683788711259" duration="1609000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -168,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683734415239</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Bugs fixed">
+      <created>1683735723095</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683735723095</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
