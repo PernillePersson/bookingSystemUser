@@ -8,4 +8,6 @@ module com.example.bookingsystemuser {
 
     opens com.example.bookingsystemuser to javafx.fxml;
     exports com.example.bookingsystemuser;
+    exports com.example.bookingsystemuser.controller;
+    opens com.example.bookingsystemuser.controller to javafx.fxml;
 }

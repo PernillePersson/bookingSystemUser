@@ -1,4 +1,4 @@
-package com.example.bookingsystemuser.model;
+package com.example.bookingsystemuser.model.objects;
 
 public class Forløb {
     private int id;

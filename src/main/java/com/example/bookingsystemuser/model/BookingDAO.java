@@ -1,6 +1,11 @@
 package com.example.bookingsystemuser.model;
 
 
+import com.example.bookingsystemuser.model.objects.Booking;
+import com.example.bookingsystemuser.model.objects.Company;
+import com.example.bookingsystemuser.model.objects.Forløb;
+import com.example.bookingsystemuser.model.objects.Organisation;
+
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -31,15 +36,5 @@ public interface BookingDAO {
     public List<Forløb> getAllForløb();
 
     public Forløb getForløb(int id);
-
-    public void addOrg(String bk, int o);
-
-    public List<Organisation> getAllOrg();
-
-    public Organisation getOrg(int id);
-
-    public Company getCompany(int id);
-
-    public void addCompany(String bk, String c);
 
 }

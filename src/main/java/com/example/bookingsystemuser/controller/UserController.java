@@ -1,11 +1,10 @@
-package com.example.bookingsystemuser;
+package com.example.bookingsystemuser.controller;
 
-import com.example.bookingsystemuser.Gmail.GEmail;
-import com.example.bookingsystemuser.model.Booking;
+import com.example.bookingsystemuser.UserApplication;
+import com.example.bookingsystemuser.model.objects.Booking;
 import com.example.bookingsystemuser.model.BookingDAO;
 import com.example.bookingsystemuser.model.BookingDAOImpl;
 import com.example.bookingsystemuser.model.SimpleThread;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;

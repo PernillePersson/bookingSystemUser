@@ -1,7 +1,9 @@
-package com.example.bookingsystemuser;
+package com.example.bookingsystemuser.controller;
 
-import com.example.bookingsystemuser.Gmail.GEmail;
 import com.example.bookingsystemuser.model.*;
+import com.example.bookingsystemuser.model.objects.Booking;
+import com.example.bookingsystemuser.model.objects.Forløb;
+import com.example.bookingsystemuser.model.objects.Organisation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -9,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -82,7 +83,7 @@ public class OpretFormularController {
         formål.getItems().addAll("Lokaleleje", "Åbent skoleforløb", "Andet");
         formål.setValue("Lokaleleje");
 
-        List<Organisation> org = bdi.getAllOrg();
+        List<Organisation> org = odi.getAllOrg();
         for (Organisation o : org){
             orgBox.getItems().add(o);
         }
@@ -282,10 +283,10 @@ public class OpretFormularController {
                     Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
 
             bdi.addForløb(bKode, f1.getId());
-            bdi.addOrg(bKode, o1.getId());
+            odi.addOrg(bKode, o1.getId());
 
             if (o1.getId() == 6){
-                bdi.addCompany(bKode, org.getText());
+                odi.addCompany(bKode, org.getText());
             }
 
 
@@ -326,6 +327,7 @@ public class OpretFormularController {
     }
 
     BookingDAO bdi = new BookingDAOImpl();
+    OrganisationDAO odi = new OrganisationDAOImpl();
 
 
 }
