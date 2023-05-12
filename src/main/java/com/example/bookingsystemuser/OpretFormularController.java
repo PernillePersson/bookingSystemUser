@@ -60,6 +60,7 @@ public class OpretFormularController {
     private String bKode;
 
     private Boolean midlertidig;
+    private Forløb f1;
 
     final Clipboard clipboard = Clipboard.getSystemClipboard();
     final ClipboardContent content = new ClipboardContent();
@@ -83,10 +84,8 @@ public class OpretFormularController {
         for (Forløb f : forl){
             forløb.getItems().add(f);
         }
-        forløb.setValue("Ingen");
 
         forplejningLink.setVisible(false);
-        //forplejningLink.setV
         bookingDato.setValue(d);
         forp = 'n';
         type = 'p';
@@ -142,11 +141,18 @@ public class OpretFormularController {
 
     @FXML
     void formålValgt(ActionEvent event) {
+        f1 = (Forløb) forløb.getItems().get(6); //Det index hvor forløb er "ingen"
         if (formål.getSelectionModel().getSelectedIndex() == 1){
             forløb.setVisible(true);
         } else {
             forløb.setVisible(false);
+            f1 = (Forløb) forløb.getItems().get(6); //Det index hvor forløb er "ingen"
         }
+    }
+
+    @FXML
+    void forløbValgt(ActionEvent event){
+        f1 = (Forløb) forløb.getValue();
     }
 
     public void hentForplejning(ActionEvent event) {
@@ -255,12 +261,11 @@ public class OpretFormularController {
         }
 
         if(!overlaps){
-            Forløb f = (Forløb) forløb.getSelectionModel().getSelectedItem();
             bdi.addBooking(fNavn.getText(), eNavn.getText(), organisation, email.getText(), nr,
                     type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
                     Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
 
-            bdi.addForløb(bKode, f.getId());
+            bdi.addForløb(bKode, f1.getId());
 
             Dialog<ButtonType> dialog = new Dialog();
 
