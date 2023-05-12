@@ -282,8 +282,12 @@ public class OpretFormularController {
                     Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
 
             bdi.addForløb(bKode, f1.getId());
-
             bdi.addOrg(bKode, o1.getId());
+
+            if (o1.getId() == 6){
+                bdi.addCompany(bKode, org.getText());
+            }
+
 
             Dialog<ButtonType> dialog = new Dialog();
 

@@ -107,6 +107,10 @@ public class BookingDAOImpl implements BookingDAO {
             ps3.setInt(1, b.getId());
             ps3.executeUpdate();
 
+            PreparedStatement ps4 = con.prepareStatement("DELETE FROM Company WHERE bookingID = ?");
+            ps4.setInt(1, b.getId());
+            ps4.executeUpdate();
+
             PreparedStatement ps = con.prepareStatement("DELETE FROM Booking WHERE bookingID = ?");
             ps.setInt(1, b.getId());
             ps.executeUpdate();
@@ -376,6 +380,48 @@ public class BookingDAOImpl implements BookingDAO {
             System.out.println("Kunne ikke finde organisation " + e.getMessage());
         }
         return o;
+    }
+
+    @Override
+    public Company getCompany(int id) {
+        Company c = null;
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT companyID, company FROM Company WHERE bookingID = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                int i = rs.getInt(1);
+                String s = rs.getString(2);
+
+                c = new Company(i, s);
+            }
+
+        }catch(SQLException e){
+            System.out.println("Kunne ikke finde note " + e.getMessage());
+        }
+        return c;
+    }
+
+    @Override
+    public void addCompany(String bk, String c) {
+        try {
+            int id = 0;
+            PreparedStatement ps1 = con.prepareStatement("SELECT bookingID FROM Booking WHERE bookingCode = ?");
+            ps1.setString(1, bk);
+            ResultSet rs = ps1.executeQuery();
+
+            while (rs.next()){
+                id = rs.getInt(1);
+            }
+
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Company VALUES(?,?)");
+            ps.setInt(1, id);
+            ps.setString(2, c);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Kunne ikke tilføje virksomhed til booking " + e.getMessage());
+        }
     }
 
 }

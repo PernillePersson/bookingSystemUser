@@ -64,8 +64,19 @@ public class FormularController {
 
         navnLabel.setText(b.getFirstName() + " " + b.getLastName());
         mailLabel.setText(b.getEmail());
-        Organisation o = bdi.getOrg(b.getId());
-        organisationLabel.setText(o.getOrganisation());
+
+        try {
+           Organisation o = bdi.getOrg(b.getId());
+            if (o.getId() == 6){
+                organisationLabel.setText(bdi.getCompany(b.getId()).getCompany());
+            }else{
+                organisationLabel.setText(o.getOrganisation());
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
         tlfLabel.setText(String.valueOf(b.getPhoneNumber()));
 
         if (b.getCatering() == 'y'){

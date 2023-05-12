@@ -38,4 +38,8 @@ public interface BookingDAO {
 
     public Organisation getOrg(int id);
 
+    public Company getCompany(int id);
+
+    public void addCompany(String bk, String c);
+
 }

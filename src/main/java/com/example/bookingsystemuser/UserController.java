@@ -130,7 +130,7 @@ public class UserController {
 
             oversigtStage.show();
         } catch (NullPointerException n){
-            System.err.println("Ingen booking fundet med denne bookingkode ");
+            System.err.println("Ingen booking fundet med denne bookingkode " + n.getMessage());
             Dialog<ButtonType> dialog = new Dialog();
 
             dialog.setTitle("Ingen bookingkode");
