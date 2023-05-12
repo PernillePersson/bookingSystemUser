@@ -4,6 +4,7 @@ import com.example.bookingsystemuser.Gmail.GEmail;
 import com.example.bookingsystemuser.model.Booking;
 import com.example.bookingsystemuser.model.BookingDAO;
 import com.example.bookingsystemuser.model.BookingDAOImpl;
+import com.example.bookingsystemuser.model.Organisation;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +52,6 @@ public class FormularController {
 
 
     public void passBooking(Booking b){
-
         booking = b;
         setDetails(booking);
     }
@@ -64,7 +64,8 @@ public class FormularController {
 
         navnLabel.setText(b.getFirstName() + " " + b.getLastName());
         mailLabel.setText(b.getEmail());
-        //organisationLabel.setText(b.getOrganisation());
+        Organisation o = bdi.getOrg(b.getId());
+        organisationLabel.setText(o.getOrganisation());
         tlfLabel.setText(String.valueOf(b.getPhoneNumber()));
 
         if (b.getCatering() == 'y'){

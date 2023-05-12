@@ -32,4 +32,10 @@ public interface BookingDAO {
 
     public Forløb getForløb(int id);
 
+    public void addOrg(String bk, int o);
+
+    public List<Organisation> getAllOrg();
+
+    public Organisation getOrg(int id);
+
 }

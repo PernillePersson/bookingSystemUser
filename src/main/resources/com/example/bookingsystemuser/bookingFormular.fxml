@@ -46,9 +46,14 @@
                         <TextField fx:id="eNavn" maxWidth="100.0" promptText="Efternavn" />
                      </children>
                   </HBox>
-                  <TextField fx:id="email" maxWidth="204.0" promptText="Er du lærer, benyt skoletdr@dk" />
+                  <TextField fx:id="email" maxWidth="204.0" promptText="Er du lærer, benyt @skoletdr.dk" />
                   <TextField fx:id="tlf" maxWidth="204.0" prefWidth="212.0" promptText="12345678" />
-                  <TextField fx:id="org" maxWidth="204.0" promptText="Udfyld hvis muligt " />
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="2.0">
+                     <children>
+                        <ComboBox fx:id="orgBox" onAction="#orgValgt" prefWidth="150.0" promptText="Vælg.." />
+                        <TextField fx:id="org" promptText="Virksomhedsnavn..." visible="false" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="260.0" spacing="2.0">
                      <children>
                         <ComboBox fx:id="formål" onAction="#formålValgt" prefWidth="150.0" promptText="Formål.." />
@@ -98,10 +103,13 @@
                   </Text>
                </children></VBox>
             </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
         </HBox>
     </center>
     <top>
-        <HBox BorderPane.alignment="CENTER" style="-fx-background-color: rgb(148, 198, 70);">
+        <HBox style="-fx-background-color: rgb(148, 198, 70);" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Opret booking">
                     <font>
@@ -121,7 +129,7 @@
                 <Button fx:id="opretBookingKnap" mnemonicParsing="false" onAction="#opretBooking" text="Opret booking" />
             </children>
             <padding>
-                <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+                <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
             </padding>
         </HBox>
     </bottom>

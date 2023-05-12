@@ -46,7 +46,7 @@ public class OpretFormularController {
     private Button opretBookingKnap;
 
     @FXML
-    private ComboBox formål, forløb, slutTid, startTid;
+    private ComboBox orgBox, formål, forløb, slutTid, startTid;
 
     @FXML
     private Text bemærkning;
@@ -60,7 +60,9 @@ public class OpretFormularController {
     private String bKode;
 
     private Boolean midlertidig;
+
     private Forløb f1;
+    private Organisation o1;
 
     final Clipboard clipboard = Clipboard.getSystemClipboard();
     final ClipboardContent content = new ClipboardContent();
@@ -79,6 +81,11 @@ public class OpretFormularController {
 
         formål.getItems().addAll("Lokaleleje", "Åbent skoleforløb", "Andet");
         formål.setValue("Lokaleleje");
+
+        List<Organisation> org = bdi.getAllOrg();
+        for (Organisation o : org){
+            orgBox.getItems().add(o);
+        }
 
         List<Forløb> forl = bdi.getAllForløb();
         for (Forløb f : forl){
@@ -137,6 +144,16 @@ public class OpretFormularController {
             forplejningLink.setVisible(false);
             forp = 'n';
         }
+    }
+
+    @FXML
+    void orgValgt(ActionEvent event) {
+        if (orgBox.getSelectionModel().getSelectedIndex() == 5){
+            org.setVisible(true);
+        } else {
+            org.setVisible(false);
+        }
+        o1 = (Organisation) orgBox.getValue();
     }
 
     @FXML
@@ -265,6 +282,8 @@ public class OpretFormularController {
                     Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
 
             bdi.addForløb(bKode, f1.getId());
+
+            bdi.addOrg(bKode, o1.getId());
 
             Dialog<ButtonType> dialog = new Dialog();
 
