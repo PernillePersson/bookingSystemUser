@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BookingDAO {
     public List<Booking> getAllBooking();
-    public void addBooking(String fn, String ln, String org,
+    public void addBooking(String fn, String ln,
                            String mail, int phone, char bt,
                            char catering, LocalDate bd,
                            String bk, Time st, Time et, int p);

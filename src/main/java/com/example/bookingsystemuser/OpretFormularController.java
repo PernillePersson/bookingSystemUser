@@ -84,7 +84,7 @@ public class OpretFormularController {
         for (Forløb f : forl){
             forløb.getItems().add(f);
         }
-
+        f1 = (Forløb) forløb.getItems().get(6);//Det index hvor forløb er "ingen"
         forplejningLink.setVisible(false);
         bookingDato.setValue(d);
         forp = 'n';
@@ -141,7 +141,6 @@ public class OpretFormularController {
 
     @FXML
     void formålValgt(ActionEvent event) {
-        f1 = (Forløb) forløb.getItems().get(6); //Det index hvor forløb er "ingen"
         if (formål.getSelectionModel().getSelectedIndex() == 1){
             forløb.setVisible(true);
         } else {
@@ -261,7 +260,7 @@ public class OpretFormularController {
         }
 
         if(!overlaps){
-            bdi.addBooking(fNavn.getText(), eNavn.getText(), organisation, email.getText(), nr,
+            bdi.addBooking(fNavn.getText(), eNavn.getText(), email.getText(), nr,
                     type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
                     Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
 

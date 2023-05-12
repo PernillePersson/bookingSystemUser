@@ -64,7 +64,7 @@ public class FormularController {
 
         navnLabel.setText(b.getFirstName() + " " + b.getLastName());
         mailLabel.setText(b.getEmail());
-        organisationLabel.setText(b.getOrganisation());
+        //organisationLabel.setText(b.getOrganisation());
         tlfLabel.setText(String.valueOf(b.getPhoneNumber()));
 
         if (b.getCatering() == 'y'){

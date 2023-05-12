@@ -8,7 +8,7 @@ public class Booking {
 
     private int id;
 
-    private String firstName, lastName, organisation, email, bookingCode, note;
+    private String firstName, lastName, email, bookingCode, note;
 
     private int phoneNumber, participants;
 
@@ -18,14 +18,13 @@ public class Booking {
 
     private Time startTid, slutTid;
 
-    public Booking(int id, String firstName, String lastName, String organisation, String email, int phoneNumber,
+    public Booking(int id, String firstName, String lastName, String email, int phoneNumber,
                    char bookingType,char catering, LocalDate bookingDate, LocalDate dateCreated, String bookingCode,
                    Time startTid, Time slutTid, int participants){
 
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.organisation = organisation;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.bookingType = bookingType;
@@ -58,14 +57,6 @@ public class Booking {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getOrganisation() {
-        return organisation;
-    }
-
-    public void setOrganisation(String organisation) {
-        this.organisation = organisation;
     }
 
     public String getEmail() {
