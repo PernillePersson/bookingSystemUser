@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Organisation + company update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/OrganisationDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/OrganisationDAOImpl.java" afterDir="false" />
+    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="MVC update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/FormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/FormularController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/objects/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/BookingDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/objects/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Forløb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/objects/Forløb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/Organisation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/objects/Organisation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/SimpleThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/model/SimpleThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingsoversigt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingsoversigt.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/weekView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/weekView.fxml" afterDir="false" />
     </list>
     <list id="67884d56-c5d6-471b-9ed9-ed56eadf1d3f" name="Changes by Marc" comment="Textfield limitation" />
     <list id="4ff9db28-83b0-4fe6-b34f-29091493642e" name="Changes by Rex" comment="Create on drag" />
@@ -112,7 +96,7 @@
       <workItem from="1683733683781" duration="806000" />
       <workItem from="1683734989275" duration="950000" />
       <workItem from="1683788711259" duration="2107000" />
-      <workItem from="1683836229886" duration="12203000" />
+      <workItem from="1683836229886" duration="15196000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -247,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683888840473</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="MVC update">
+      <created>1683889824359</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683889824359</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,6 +269,7 @@
     <MESSAGE value="CSS added" />
     <MESSAGE value="Organisation update" />
     <MESSAGE value="Organisation + company update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Organisation + company update" />
+    <MESSAGE value="MVC update" />
+    <option name="LAST_COMMIT_MESSAGE" value="MVC update" />
   </component>
 </project>
