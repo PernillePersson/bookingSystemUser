@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="MVC update">
+    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="CSS added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" afterDir="false" />
     </list>
     <list id="67884d56-c5d6-471b-9ed9-ed56eadf1d3f" name="Changes by Marc" comment="Textfield limitation" />
     <list id="4ff9db28-83b0-4fe6-b34f-29091493642e" name="Changes by Rex" comment="Create on drag" />
@@ -96,7 +97,7 @@
       <workItem from="1683733683781" duration="806000" />
       <workItem from="1683734989275" duration="950000" />
       <workItem from="1683788711259" duration="2107000" />
-      <workItem from="1683836229886" duration="15196000" />
+      <workItem from="1683836229886" duration="16184000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -238,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683889824359</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="CSS added">
+      <created>1684049932470</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1684049932470</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,10 +274,10 @@
     <MESSAGE value="Translation" />
     <MESSAGE value="Catering pdf" />
     <MESSAGE value="forløb bugs fixed" />
-    <MESSAGE value="CSS added" />
     <MESSAGE value="Organisation update" />
     <MESSAGE value="Organisation + company update" />
     <MESSAGE value="MVC update" />
-    <option name="LAST_COMMIT_MESSAGE" value="MVC update" />
+    <MESSAGE value="CSS added" />
+    <option name="LAST_COMMIT_MESSAGE" value="CSS added" />
   </component>
 </project>

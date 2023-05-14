@@ -98,6 +98,21 @@ public class OpretFormularController {
         forp = 'n';
         type = 'p';
 
+        if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+            opretBookingKnap.setText("Anmod om booking");
+            bemærkning.setVisible(true);
+            type = 't';
+            midlertidig = true;
+
+        }else {
+            opretBookingKnap.setText("Opret booking");
+            bemærkning.setVisible(false);
+            type = 'p';
+            midlertidig = false;
+        }
+
     }
 
     public void initialize() {
