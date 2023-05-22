@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.DayOfWeek;
@@ -38,7 +41,7 @@ public class OpretFormularController {
     private ToggleGroup bookingType, forplejning;
 
     @FXML
-    private Hyperlink forplejningLink;
+    private Hyperlink forplejningLink, forløbLink;
 
     @FXML
     private RadioButton midlType, permType, noToggle, yesToggle;
@@ -117,38 +120,42 @@ public class OpretFormularController {
 
     public void initialize() {
         eNavn.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                eNavn.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            if (!newValue.matches("a-zæøå A-ZÆØÅ -*")) {
+                eNavn.setText(newValue.replaceAll("[^a-zæøå A-ZÆØÅ]", ""));
             }
         });
 
         fNavn.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                fNavn.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            if (!newValue.matches("a-zæøå A-ZÆØÅ*")) {
+                fNavn.setText(newValue.replaceAll("[^a-zæøå A-ZÆØÅ]", ""));
             }
         });
 
         email.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z-\\d-@-.*")) {
-                email.setText(newValue.replaceAll("[^\\sa-zA-Z-\\d-.-@]", ""));
+            if (!newValue.matches("a-zæøå A-ZÆØÅ \\d @ - .*")) {
+                email.setText(newValue.replaceAll("[^a-zæøå A-ZÆØÅ \\d . @ -]", ""));
             }
         });
 
         org.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                org.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            if (!newValue.matches("a-zæøå A-ZÆØÅ -*")) {
+                org.setText(newValue.replaceAll("[^a-zæøå A-ZÆØÅ -]", ""));
             }
         });
 
         tlf.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (!newValue.matches("\\d*")) {
-                    tlf.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+            if (!newValue.matches("\\d*")) {
+                tlf.setText(newValue.replaceAll("[^\\d]", ""));
+            }
             if (tlf.getLength() > 8) {
                 String MAX = tlf.getText().substring(0,8);
                 tlf.setText(MAX);
             }
         });
+    }
+
+    public void åbenForløb() throws URISyntaxException, IOException {
+        Desktop.getDesktop().browse(new URI("https://skoletjenesten.dk/mind-factory-ecco"));
     }
 
     @FXML
@@ -176,8 +183,10 @@ public class OpretFormularController {
     void formålValgt(ActionEvent event) {
         if (formål.getSelectionModel().getSelectedIndex() == 1){
             forløb.setVisible(true);
+            forløbLink.setVisible(true);
         } else {
             forløb.setVisible(false);
+            forløbLink.setVisible(false);
             f1 = (Forløb) forløb.getItems().get(6); //Det index hvor forløb er "ingen"
         }
     }
