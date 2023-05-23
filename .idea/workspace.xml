@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="CSS added">
+    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Bugs fixed">
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e6dc4219-db95-47ef-9c29-ec5abafb63d3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e6dc4219-db95-47ef-9c29-ec5abafb63d3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" afterDir="false" />
     </list>
@@ -97,7 +99,8 @@
       <workItem from="1683733683781" duration="806000" />
       <workItem from="1683734989275" duration="950000" />
       <workItem from="1683788711259" duration="2107000" />
-      <workItem from="1683836229886" duration="16184000" />
+      <workItem from="1683836229886" duration="16836000" />
+      <workItem from="1684220870906" duration="8629000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -246,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684049932470</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Bugs fixed">
+      <created>1684053557789</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1684053557789</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +280,6 @@
     <MESSAGE value="Changes by Magnus" />
     <MESSAGE value="Create on drag" />
     <MESSAGE value="Textfield limitation" />
-    <MESSAGE value="Bugs fixed" />
     <MESSAGE value="Translation" />
     <MESSAGE value="Catering pdf" />
     <MESSAGE value="forløb bugs fixed" />
@@ -278,6 +287,7 @@
     <MESSAGE value="Organisation + company update" />
     <MESSAGE value="MVC update" />
     <MESSAGE value="CSS added" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS added" />
+    <MESSAGE value="Bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugs fixed" />
   </component>
 </project>

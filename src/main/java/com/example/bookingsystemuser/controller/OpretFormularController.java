@@ -203,7 +203,7 @@ public class OpretFormularController {
 
     public void hentForplejning(ActionEvent event) {
         try {
-            File pdf = new File(this.getClass().getResource("forplejning.pdf").toURI());
+            File pdf = new File("src/main/resources/com/example/bookingsystemuser/forplejning.pdf");
             Desktop.getDesktop().open(pdf);
         } catch (Exception e) {
             System.out.println("Kunne ikke hente pdf" + e.getMessage());
@@ -268,12 +268,6 @@ public class OpretFormularController {
 
     @FXML
     void opretBooking(ActionEvent event) {
-        fNavn.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
-        eNavn.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
-        tlf.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
-        email.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
-        antalDeltagere.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
-        forløb.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
 
         if (fNavn.getLength() == 0) {
             fNavn.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
@@ -281,11 +275,11 @@ public class OpretFormularController {
         } else if (eNavn.getLength() == 0) {
             eNavn.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
-        } else if (tlf.getLength() != 8) {
-            tlf.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
-
         } else if (email.getLength() == 0) {
             email.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
+
+        } else if (tlf.getLength() != 8) {
+            tlf.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
         } else if (antalDeltagere.getValue().equals(0)) {
             antalDeltagere.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
