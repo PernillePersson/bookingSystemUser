@@ -11,6 +11,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -29,10 +32,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import static javafx.scene.paint.Color.RED;
+import static javafx.scene.paint.Color.TRANSPARENT;
+
 public class OpretFormularController {
 
     @FXML
-    private TextField eNavn,  email, fNavn, org, tlf;
+    private TextField eNavn, email, fNavn, org, tlf;
 
     @FXML
     private DatePicker bookingDato;
@@ -71,28 +77,27 @@ public class OpretFormularController {
     final Clipboard clipboard = Clipboard.getSystemClipboard();
     final ClipboardContent content = new ClipboardContent();
 
-
     public OpretFormularController() throws SQLException {
     }
 
-    public void opsæt(LocalDate d, Time st, Time et){
+    public void opsæt(LocalDate d, Time st, Time et) {
         startTid.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
                 "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00");
         slutTid.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
                 "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00");
-        startTid.setValue(String.valueOf(st).substring(0,5));
-        slutTid.setValue(String.valueOf(et).substring(0,5));
+        startTid.setValue(String.valueOf(st).substring(0, 5));
+        slutTid.setValue(String.valueOf(et).substring(0, 5));
 
         formål.getItems().addAll("Lokaleleje", "Åbent skoleforløb", "Andet");
         formål.setValue("Lokaleleje");
 
         List<Organisation> org = odi.getAllOrg();
-        for (Organisation o : org){
+        for (Organisation o : org) {
             orgBox.getItems().add(o);
         }
 
         List<Forløb> forl = bdi.getAllForløb();
-        for (Forløb f : forl){
+        for (Forløb f : forl) {
             forløb.getItems().add(f);
         }
         f1 = (Forløb) forløb.getItems().get(6);//Det index hvor forløb er "ingen"
@@ -103,13 +108,13 @@ public class OpretFormularController {
 
         if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
                 bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
-                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY) {
             opretBookingKnap.setText("Anmod om booking");
             bemærkning.setVisible(true);
             type = 't';
             midlertidig = true;
 
-        }else {
+        } else {
             opretBookingKnap.setText("Opret booking");
             bemærkning.setVisible(false);
             type = 'p';
@@ -148,7 +153,7 @@ public class OpretFormularController {
                 tlf.setText(newValue.replaceAll("[^\\d]", ""));
             }
             if (tlf.getLength() > 8) {
-                String MAX = tlf.getText().substring(0,8);
+                String MAX = tlf.getText().substring(0, 8);
                 tlf.setText(MAX);
             }
         });
@@ -160,7 +165,7 @@ public class OpretFormularController {
 
     @FXML
     void forplejningToggle(ActionEvent event) {
-        if (forplejning.getSelectedToggle() == yesToggle){
+        if (forplejning.getSelectedToggle() == yesToggle) {
             forplejningLink.setVisible(true);
             forp = 'y';
         } else if (forplejning.getSelectedToggle() == noToggle) {
@@ -171,7 +176,7 @@ public class OpretFormularController {
 
     @FXML
     void orgValgt(ActionEvent event) {
-        if (orgBox.getSelectionModel().getSelectedIndex() == 5){
+        if (orgBox.getSelectionModel().getSelectedIndex() == 5) {
             org.setVisible(true);
         } else {
             org.setVisible(false);
@@ -181,7 +186,7 @@ public class OpretFormularController {
 
     @FXML
     void formålValgt(ActionEvent event) {
-        if (formål.getSelectionModel().getSelectedIndex() == 1){
+        if (formål.getSelectionModel().getSelectedIndex() == 1) {
             forløb.setVisible(true);
             forløbLink.setVisible(true);
         } else {
@@ -192,7 +197,7 @@ public class OpretFormularController {
     }
 
     @FXML
-    void forløbValgt(ActionEvent event){
+    void forløbValgt(ActionEvent event) {
         f1 = (Forløb) forløb.getValue();
     }
 
@@ -200,7 +205,7 @@ public class OpretFormularController {
         try {
             File pdf = new File(this.getClass().getResource("forplejning.pdf").toURI());
             Desktop.getDesktop().open(pdf);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Kunne ikke hente pdf" + e.getMessage());
         }
     }
@@ -209,13 +214,13 @@ public class OpretFormularController {
     void tjekDato(ActionEvent event) {
         if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
                 bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
-                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY) {
             opretBookingKnap.setText("Anmod om booking");
             bemærkning.setVisible(true);
             type = 't';
             midlertidig = true;
 
-        }else {
+        } else {
             opretBookingKnap.setText("Opret booking");
             bemærkning.setVisible(false);
             type = 'p';
@@ -225,17 +230,17 @@ public class OpretFormularController {
 
     @FXML
     void opdaterSlutTid(ActionEvent event) {
-        if (slutTid.getSelectionModel().getSelectedIndex() <= startTid.getSelectionModel().getSelectedIndex()){
-            slutTid.setValue(slutTid.getItems().get(startTid.getSelectionModel().getSelectedIndex() +1));
+        if (slutTid.getSelectionModel().getSelectedIndex() <= startTid.getSelectionModel().getSelectedIndex()) {
+            slutTid.setValue(slutTid.getItems().get(startTid.getSelectionModel().getSelectedIndex() + 1));
         }
         if (slutTid.getSelectionModel().getSelectedIndex() >= 11 ||
                 bookingDato.getValue().getDayOfWeek() == DayOfWeek.SATURDAY ||
-                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY){
+                bookingDato.getValue().getDayOfWeek() == DayOfWeek.SUNDAY) {
             opretBookingKnap.setText("Anmod om booking");
             bemærkning.setVisible(true);
             type = 't';
             midlertidig = true;
-        }else {
+        } else {
             opretBookingKnap.setText("Opret booking");
             bemærkning.setVisible(false);
             type = 'p';
@@ -245,17 +250,17 @@ public class OpretFormularController {
 
     @FXML
     void opdaterStartTid(ActionEvent event) {
-        if (startTid.getSelectionModel().getSelectedIndex() >= slutTid.getSelectionModel().getSelectedIndex()){
-            startTid.setValue(startTid.getItems().get(slutTid.getSelectionModel().getSelectedIndex() -1));
+        if (startTid.getSelectionModel().getSelectedIndex() >= slutTid.getSelectionModel().getSelectedIndex()) {
+            startTid.setValue(startTid.getItems().get(slutTid.getSelectionModel().getSelectedIndex() - 1));
         }
     }
 
     @FXML
     void typeToggle(ActionEvent event) {
-        if (bookingType.getSelectedToggle() == midlType){
+        if (bookingType.getSelectedToggle() == midlType) {
             type = 't';
         } else if (bookingType.getSelectedToggle() == permType) {
-            if (!midlertidig){
+            if (!midlertidig) {
                 type = 'p';
             }
         }
@@ -263,83 +268,108 @@ public class OpretFormularController {
 
     @FXML
     void opretBooking(ActionEvent event) {
-        int nr = Integer.parseInt(tlf.getText());
-        bKode = BookingCode.generateBookingCode();
+        fNavn.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
+        eNavn.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
+        tlf.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
+        email.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
+        antalDeltagere.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
+        forløb.setBorder(new Border(new BorderStroke(TRANSPARENT, BorderStrokeStyle.SOLID, null, null)));
 
-        String organisation = org.getText();
-        if (org.getText().isEmpty()){
-            organisation = "Ingen";
-        }
+        if (fNavn.getLength() == 0) {
+            fNavn.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
-        //GEmail gmailSender = new GEmail();
+        } else if (eNavn.getLength() == 0) {
+            eNavn.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
+        } else if (tlf.getLength() != 8) {
+            tlf.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
-        List<Booking> allBookings = bdi.getAllBooking();
-        boolean overlaps = false;
+        } else if (email.getLength() == 0) {
+            email.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
-        for(Booking b : allBookings){
+        } else if (antalDeltagere.getValue().equals(0)) {
+            antalDeltagere.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
-            String value = String.valueOf(b.getStartTid());
-            String strt = value.substring(0,2);
-            int start = Integer.valueOf(strt);
+        } else if (formål.getValue().equals("Åbent skoleforløb") && forløb.getValue().equals("Intet")) {
+            forløb.setBorder(new Border(new BorderStroke(RED, BorderStrokeStyle.SOLID, null, null)));
 
-            String value2 = String.valueOf(b.getSlutTid());
-            String slt = value2.substring(0,2);
-            int slut = Integer.valueOf(slt);
+        } else if (fNavn.getLength() > 0 && eNavn.getLength() > 0 && email.getLength() > 0 && tlf.getLength() == 8 && formål.getValue().equals("Åbent skoleforløb") && !forløb.getValue().equals("Intet")) {
+            int nr = Integer.parseInt(tlf.getText());
+            bKode = BookingCode.generateBookingCode();
 
-            String value3 = String.valueOf(startTid.getValue());
-            String comboStart = value3.substring(0,2);
-            int comboStrt = Integer.valueOf(comboStart);
-
-            String value4 = String.valueOf(slutTid.getValue());
-            String comboSlut = value4.substring(0,2);
-            int comboSlt = Integer.valueOf(comboSlut);
-
-            if(bookingDato.getValue().equals(b.getBookingDate()) && comboSlt >= start && comboStrt <= slut){
-                overlaps = true;
-                break;
-            }
-        }
-
-        if(!overlaps){
-            bdi.addBooking(fNavn.getText(), eNavn.getText(), email.getText(), nr,
-                    type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
-                    Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
-
-            bdi.addForløb(bKode, f1.getId());
-            odi.addOrg(bKode, o1.getId());
-
-            if (o1.getId() == 6){
-                odi.addCompany(bKode, org.getText());
+            String organisation = org.getText();
+            if (org.getText().isEmpty()) {
+                organisation = "Ingen";
             }
 
+            //GEmail gmailSender = new GEmail();
 
-            Dialog<ButtonType> dialog = new Dialog();
+            List<Booking> allBookings = bdi.getAllBooking();
+            boolean overlaps = false;
 
-            dialog.setTitle("Din bookingkode");
-            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+            for (Booking b : allBookings) {
 
-            Label l1 = new Label("Din bookingkode:");
-            Label kodeLabel = new Label(bKode);
-            kodeLabel.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
-            Label infoLabel = new Label("Gem denne kode til senere brug");
+                String value = String.valueOf(b.getStartTid());
+                String strt = value.substring(0, 2);
+                int start = Integer.valueOf(strt);
 
-            //gmailSender.sendBookingCode(email.getText(), fNavn.getText(),bKode);
+                String value2 = String.valueOf(b.getSlutTid());
+                String slt = value2.substring(0, 2);
+                int slut = Integer.valueOf(slt);
 
-            VBox vb = new VBox(l1, kodeLabel, infoLabel);
-            vb.setSpacing(10);
-            vb.setPadding(new Insets(10,30,10,30));
+                String value3 = String.valueOf(startTid.getValue());
+                String comboStart = value3.substring(0, 2);
+                int comboStrt = Integer.valueOf(comboStart);
 
-            dialog.getDialogPane().setContent(vb);
+                String value4 = String.valueOf(slutTid.getValue());
+                String comboSlut = value4.substring(0, 2);
+                int comboSlt = Integer.valueOf(comboSlut);
 
-            Optional<ButtonType> knap = dialog.showAndWait();
-
-            if (knap.get() == ButtonType.OK)
-                try {
-                    content.putString(bKode);
-                    clipboard.setContent(content);
-                } catch (Exception e) {
+                if (bookingDato.getValue().equals(b.getBookingDate()) && comboSlt >= start && comboStrt <= slut) {
+                    overlaps = true;
+                    break;
                 }
+            }
+
+            if (!overlaps) {
+                bdi.addBooking(fNavn.getText(), eNavn.getText(), email.getText(), nr,
+                        type, forp, bookingDato.getValue(), bKode, Time.valueOf(startTid.getValue() + ":00"),
+                        Time.valueOf(slutTid.getValue() + ":00"), (Integer) antalDeltagere.getValue());
+
+                bdi.addForløb(bKode, f1.getId());
+                odi.addOrg(bKode, o1.getId());
+
+                if (o1.getId() == 6) {
+                    odi.addCompany(bKode, org.getText());
+                }
+
+                Dialog<ButtonType> dialog = new Dialog();
+
+                dialog.setTitle("Din bookingkode");
+                dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK);
+
+                Label l1 = new Label("Din bookingkode:");
+                Label kodeLabel = new Label(bKode);
+                kodeLabel.setFont(Font.font("ARIAL", FontWeight.BOLD, 20));
+                Label infoLabel = new Label("Gem denne kode til senere brug");
+
+                //gmailSender.sendBookingCode(email.getText(), fNavn.getText(),bKode);
+
+                VBox vb = new VBox(l1, kodeLabel, infoLabel);
+                vb.setSpacing(10);
+                vb.setPadding(new Insets(10, 30, 10, 30));
+
+                dialog.getDialogPane().setContent(vb);
+
+                Optional<ButtonType> knap = dialog.showAndWait();
+
+                if (knap.get() == ButtonType.OK)
+                    try {
+                        content.putString(bKode);
+                        clipboard.setContent(content);
+                    } catch (Exception e) {
+                    }
+            }
         }
     }
 
@@ -352,6 +382,5 @@ public class OpretFormularController {
 
     BookingDAO bdi = new BookingDAOImpl();
     OrganisationDAO odi = new OrganisationDAOImpl();
-
 
 }
