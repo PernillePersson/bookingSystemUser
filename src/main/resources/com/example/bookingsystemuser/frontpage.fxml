@@ -17,9 +17,9 @@
             <Image url="@A64I3287-3.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="491.0" layoutY="306.0" mnemonicParsing="false" onAction="#switchToOversigtScene" prefHeight="94.0" prefWidth="168.0" style="-fx-background-color: rgb(148, 198, 70);" text="Opret booking" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="488.0" layoutY="306.0" mnemonicParsing="false" onAction="#switchToOversigtScene" prefHeight="97.0" prefWidth="174.0" style="-fx-background-color: rgb(148, 198, 70);" text="Opret booking" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Times New Roman Bold" size="28.0" />
+            <Font name="Arial" size="28.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -41,9 +41,9 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button layoutX="491.0" layoutY="415.0" mnemonicParsing="false" onAction="#åbenHjemmeside" prefHeight="94.0" prefWidth="168.0" style="-fx-background-color: GREY;" text="Besøg vores hjemmeside" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="488.0" layoutY="415.0" mnemonicParsing="false" onAction="#åbenHjemmeside" prefHeight="94.0" prefWidth="174.0" style="-fx-background-color: GREY;" text="Besøg vores hjemmeside" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font size="25.0" />
+            <Font name="Arial" size="25.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
