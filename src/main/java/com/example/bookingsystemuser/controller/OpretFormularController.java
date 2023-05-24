@@ -59,7 +59,7 @@ public class OpretFormularController {
     private ComboBox orgBox, formål, forløb, slutTid, startTid;
 
     @FXML
-    private Text bemærkning;
+    private Text bemærkning, optagetTekst;
 
     @FXML
     private Spinner antalDeltagere;
@@ -363,6 +363,8 @@ public class OpretFormularController {
                         clipboard.setContent(content);
                     } catch (Exception e) {
                     }
+            } else {
+                optagetTekst.setVisible(true);
             }
         }
     }
