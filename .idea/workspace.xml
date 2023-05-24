@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Fjernet unyttig kode">
+    <list default="true" id="101b11e6-07e0-428b-b08f-3cdacb36d7ba" name="Changes" comment="Gør opmærksom på optaget">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/bookingsystemuser/controller/OpretFormularController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookingsystemuser/bookingFormular.fxml" afterDir="false" />
     </list>
     <list id="67884d56-c5d6-471b-9ed9-ed56eadf1d3f" name="Changes by Marc" comment="Textfield limitation" />
     <list id="4ff9db28-83b0-4fe6-b34f-29091493642e" name="Changes by Rex" comment="Create on drag" />
@@ -100,7 +99,7 @@
       <workItem from="1683788711259" duration="2107000" />
       <workItem from="1683836229886" duration="16836000" />
       <workItem from="1684220870906" duration="13322000" />
-      <workItem from="1684913945527" duration="1927000" />
+      <workItem from="1684913945527" duration="3439000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1683538410610</created>
@@ -263,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684831157849</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Gør opmærksom på optaget">
+      <created>1684924630529</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1684924630529</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +302,7 @@
     <MESSAGE value="CSS added" />
     <MESSAGE value="Bugs fixed" />
     <MESSAGE value="Fjernet unyttig kode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fjernet unyttig kode" />
+    <MESSAGE value="Gør opmærksom på optaget" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gør opmærksom på optaget" />
   </component>
 </project>
