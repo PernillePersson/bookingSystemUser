@@ -14,11 +14,9 @@ public class SceneviewerSwitch {
     public static void setScene(Scene scene) {
         SceneviewerSwitch.scene = scene;
     }
-
     public static void switchTo(Sceneviewer sceneViewer) throws IOException {
 
         Parent root = FXMLLoader.load(SceneviewerSwitch.class.getResource(sceneViewer.getFileName()));
         scene.setRoot(root);
     }
-
 }

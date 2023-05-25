@@ -70,8 +70,7 @@ public class UserController {
         insertSystemBookings();
         simpleThread.start();
 
-        // sendNotificationEmails(); // Aktiver den her når vi får sat en værdi på db der tjekker om der er blevet
-        // sendt en notifikation før.
+        // sendNotificationEmails(); // er udkommenteret grundet at den ikke fungerer på EASV netværk
     } // Vores initialize der kører alle de metoder der skal køres fra starten af. En thread der kører hvert sekund
     // og opdaterer vores view
 
@@ -79,7 +78,7 @@ public class UserController {
     void opretBookingKnap(ActionEvent event) throws IOException {
         //Skift scene til bookingformular
         opretBooking(LocalDate.now(), Time.valueOf("07:00:00"), Time.valueOf("12:00:00"));
-    }
+    } // Knap der åbner bookingformular vha. opretBooking()
 
     public void opretBooking(LocalDate d, Time st, Time et) throws IOException {
         //åben formular med alt booking info, og knap der opdaterer
@@ -98,14 +97,14 @@ public class UserController {
             }
         });
         oversigtStage.show();
-    }
+    } // Metode der åbner bookingformularen
 
     @FXML
     void findBooking(ActionEvent event) throws IOException {
         bKode = bkTekst.getText();
         Booking b = bdi.getMyBooking(bKode);
         ændreBooking(b);
-    }
+    } // Når bruger har indtastet bookingkode i tekstfeltet og trykker på knappen, finder den bookingen og åbner bookingoversigten der bliver lavet i ændreBooking()
 
     public void ændreBooking(Booking b) throws IOException {
         try {
@@ -126,7 +125,7 @@ public class UserController {
             });
 
             oversigtStage.show();
-        } catch (NullPointerException n){
+        } catch (NullPointerException n){ // Hvis koden ikke findes sker nedenstående
             System.err.println("Ingen booking fundet med denne bookingkode " + n.getMessage());
             Dialog<ButtonType> dialog = new Dialog();
 
@@ -150,7 +149,7 @@ public class UserController {
                 } catch (Exception ex) {
                 }
         }
-    }
+    } // Metode der åbner bookingoversigt
 
     @FXML
     void forrigeUgeKnap(ActionEvent event) {
@@ -218,7 +217,8 @@ public class UserController {
     void mondayPress(MouseEvent event) {
         event.setDragDetect(true);
         y_start = event.getY();
-    }
+    } // Sætter drag til true og får en y_værdi ud fra musens lokation.
+                                        // Denne metode er præcis den samme for alle de andre *ugedag*Press events.
 
     @FXML
     void mondayRelease(MouseEvent event) throws IOException {
@@ -228,7 +228,8 @@ public class UserController {
         }catch (IndexOutOfBoundsException e){
             System.err.println("Kan ikke oprette booking udenfor kalenderen");
         }
-    }
+    } // Får endnu en y_værdi ud fra hvor musen stopper med at være holdt nede.
+                                                                // Denne metode er præcis den samme for alle de andre *ugedag*Release events.
 
     @FXML
     void tuesdayPress(MouseEvent event) {
@@ -331,6 +332,7 @@ public class UserController {
 
         HashMap<Double, Time> locationMap = new HashMap<>();
 
+        // Sørger for at lde(LocalDate) har den rigtige dag
         if(p == mandagPane) {
            lde = shownDate.with(DayOfWeek.MONDAY);
         } else if(p == tirsdagPane){
@@ -358,11 +360,11 @@ public class UserController {
         // Array med de værdier som vi skal bruge mht. at indsætte rektangel på det korrekte sted
         double[] yValues = {0, 44, 89, 134, 179, 224, 269, 314, 359, 404, 449, 494, 539, 584, 629, 674, 719, 764};
 
-        // Find start og slut indekset for den nye rektangel
+        // Find start og slut indekset for den nye rektangel vha. disse ints
         int startIndex = -1;
         int endIndex = -1;
 
-        // For loop der finder start og slut index.
+        // For loop der finder start og slut indexet (drag n drop).
         for (int i = 0; i < yValues.length; i++) {
             if (y_start >= yValues[i] && y_start < yValues[i + 1]) {
                 startIndex = i;
@@ -374,10 +376,11 @@ public class UserController {
         }
 
         // Hvis startIndexet ikke er -1 og endIndex ikke er -1, så laver vi en ny rektangel
+        // Vi sætter rektanglens Y værdi til at være den tættest nedrundede y_værdi og + 1. F.eks. hvis brugeren begynder at trække
+        // Ved 85, så bliver starten sat ved 45.
+        // Højden bliver sat ved at trække rektanglens start Y fra dens slut Y.
         if (startIndex != -1 && endIndex != -1) {
             Rectangle r = new Rectangle();
-            //Booking book = new Booking(3,"Mognus","Hansen","EASV","madmedmig@gmail.com",1234,'t','y', LocalDate.of(2023,04,03),LocalDate.of(2023,03,30),"131231",Time.valueOf("10:00:00"),Time.valueOf("15:00:00"), 10)
-            
             r.setY(yValues[startIndex] + 1);
             r.setX(0);
             r.setWidth(133);
@@ -408,6 +411,7 @@ public class UserController {
     public void insertSystemBookings(){
         removeVisuals();
 
+        // Liste med bookings
         List<Booking> bookings = bdi.showBooking(shownDate.with(DayOfWeek.MONDAY));
 
         HashMap<Time, Double> locationMap = new HashMap<>();
@@ -420,11 +424,12 @@ public class UserController {
         locationMap.put(Time.valueOf("19:00:00"),539.0); locationMap.put(Time.valueOf("20:00:00"),584.0); locationMap.put(Time.valueOf("21:00:00"),629.0);
         locationMap.put(Time.valueOf("22:00:00"),674.0); locationMap.put(Time.valueOf("23:00:00"),719.0); locationMap.put(Time.valueOf("24:00:00"),764.0);
 
-        // Begynder at indsætte rektangler
+        // Begynder at indsætte rektangler vha et for each
         for(Booking book : bookings){
 
             Rectangle r = new Rectangle();
 
+            // sætter start og slut lokation ved hjælp af vores HashMap.
             double yStart = locationMap.get(book.getStartTid());
             double yEnd = locationMap.get(book.getSlutTid());
 
@@ -435,7 +440,7 @@ public class UserController {
             r.setWidth(133);
             r.setOpacity(0.3);
 
-            // Sætter farven alt efter booking type
+            // Sætter farven alt efter hvilken booking type det er
             if (Objects.equals(book.getBookingCode(), bKode)){
                 r.onMouseClickedProperty().set(mouseEvent -> {
                 System.out.println("Clicked on: " + book.getFirstName());
@@ -445,10 +450,10 @@ public class UserController {
                         throw new RuntimeException(e);
                     }
                 });
-                if (book.getBookingType() == 't'){
+                if (book.getBookingType() == 't'){ // hvis den er temporary, sø rød farve
                     r.setFill(Color.RED);
                 } else {
-                    r.setFill(Color.DODGERBLUE);
+                    r.setFill(Color.DODGERBLUE); // ellers blå
                 }
             } else {r.setFill(Color.BLACK);}
 
@@ -480,7 +485,7 @@ public class UserController {
                 søndagPane.getChildren().add(r);
             }
         }
-    } //Indsætter bookings fra database i kalenderoversigt
+    } // Indsætter bookings fra database ind i vores kalenderoversigt
 
     public void removeVisuals(){
         mandagPane.getChildren().removeAll(manRectangles);

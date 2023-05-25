@@ -13,9 +13,11 @@ public class SimpleThread extends Thread {
         isRunning = true;
     }
 
+    // Mens den kører
     public void run() {
         while (isRunning) {
             Platform.runLater(() -> {
+                // Kører insertSystemBookings metoden fra vores controller
                 controller.insertSystemBookings();
             });
             try {
